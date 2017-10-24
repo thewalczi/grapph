@@ -1,0 +1,84 @@
+$gray: #ccc;
+
+body{
+	background: #444;
+	margin: 0;
+	padding: 0;
+	font-family: arial;
+
+	* {
+		box-sizing: border-box;
+	}
+}
+
+.wrapper {
+	max-width: 768px;
+	margin:0 auto;
+	padding: 15px;
+}
+
+header {
+	border-bottom: 4px solid $gray;
+
+	p {
+		color: #ddd;
+		font-size: 30px;
+		margin: 0;
+		font-weight: 400;
+	}
+}
+
+form {
+	width: 100%;
+
+	.data-form {
+		padding-right: 50px;
+		position: relative;
+
+		
+		input {
+			background: $gray;
+			font-size: 18px;
+			padding: 10px 5px;
+			border: 0;
+			margin: 1%;
+			height: 35px;
+		}
+		.data-name {
+			width: 73%;
+			float: left;
+		}
+		.data-value {
+			width: 23%;
+			float: left;
+		}
+		.data-remove {
+			width: 25px;
+			height: 25px;
+			line-height: 25px;
+			// background: #fff;
+			color: $gray;
+			border-radius: 50%;
+			position: absolute;
+			text-align: center;
+			font-weight: 700;
+			font-size: 18px;
+			top: 13px;
+			right: 10px;
+			cursor: pointer;
+
+			&:hover {
+				background: $gray;
+				color: #000;
+			}
+		}
+		&:after {
+			content: '';
+			clear:both;
+			width: 100%;
+			display: block;
+		}
+	}
+
+}
+
