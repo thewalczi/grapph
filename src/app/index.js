@@ -17,6 +17,9 @@ var Form = CreateReactClass({
             <form onSubmit={this.handleSubmit}>
             	<div className="data-form">
             		<input className="data-name" type="text" ref="dataName"/>
+            		<input className="data-value" type="number" ref="dataValue"/>
+            		<input className="data-name" type="text" ref="dataName"/>
+            		<input className="data-value" type="number" ref="dataValue"/>
             		<input type="submit" value="Rysuj"/>
             	</div>
             </form>
@@ -26,7 +29,7 @@ var Form = CreateReactClass({
 
     handleSubmit: function(e) {
         e.preventDefault();
-        this.props.passValues(this.refs.dataName.value);
+        this.props.passValues(this.refs.dataName.value, this.refs.dataValue.value);
     }
 
 });
@@ -37,6 +40,7 @@ var Graph = CreateReactClass({
             <div id="graph">
 				<div>
 					<span className="graph-data-name">{this.props.name}</span>
+					<span className="graph-data-name">{this.props.value}</span>
 				</div>
 				
 			</div>
@@ -47,25 +51,27 @@ var Graph = CreateReactClass({
 var App = CreateReactClass({
     getInitialState: function() {
         return {
-            name: this.props.name
-
+            name: this.props.name,
+            value: this.props.value
         };
     },
 
-    passValues: function(item) {
+    passValues: function(dataName, dataValue) {
         this.setState({
-            name: item
+            name: dataName,
+            value: dataValue
         });
         console.log(this.state.name);
+        console.log(this.state.value);
         console.log('clicked');
     },
 
     render: function() {
         return (
             <div>
-    			<Form name={this.state.name} passValues={this.passValues}/>
+    			<Form name={this.state.name} value={this.state.value} passValues={this.passValues}/>
 
-    			<Graph name={this.state.name}/>
+    			<Graph name={this.state.name} value={this.state.value} />
     		</div>
         );
     }
