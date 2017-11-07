@@ -1,22 +1,35 @@
+//VARIABLES
+
 $gray: #505050;
 $aqua: #19b0bb;
+$red: #f00;
 $textColor: #ddd;
 
-@mixin rotate($deg) {
-	-webkit-transform: rotate($deg);
-    -moz-transform: rotate($deg);
-    -o-transform: rotate($deg);
-    -ms-transform: rotate($deg);
-    transform: rotate($deg);
-}
+$tablet: "(max-width: 768px)";
+$phone: "(max-width: 500px)";
 
-@mixin rotate-point($y, $x) {
-	-webkit-transform-origin: $y $x;
-    -moz-transform-origin: $y $x;
-    -o-transform-origin: $y $x;
-    -ms-transform-origin: $y $x;
-    transform-origin: $y $x;
-}
+
+//MIXINS
+
+// @mixin rotate($deg) {
+// 	-webkit-transform: rotate($deg);
+//     -moz-transform: rotate($deg);
+//     -o-transform: rotate($deg);
+//     -ms-transform: rotate($deg);
+//     transform: rotate($deg);
+// }
+
+// @mixin rotate-point($y, $x) {
+// 	-webkit-transform-origin: $y $x;
+//     -moz-transform-origin: $y $x;
+//     -o-transform-origin: $y $x;
+//     -ms-transform-origin: $y $x;
+//     transform-origin: $y $x;
+// }
+
+
+//STYLE
+
 
 body{
 	background: #444;
@@ -47,29 +60,36 @@ body{
 
 header {
 	border-bottom: 3px solid $aqua;
+	text-align: center;
 
-	.logo {
-		font-size: 30px;
-		margin: 0;
-		font-weight: 400;
-		width: 35%;
-		float: left;
+	p {
+		display: inline-block;
+		vertical-align: middle;
 
-		span {
-			color: $aqua;
-			margin-left: -6px;
-			margin-right: -6px;
-			opacity: 1;
-			position: relative;
-			z-index: -1;
+		&.logo {
+			font-size: 30px;
+			margin: 0;
+			font-weight: 400;
+			width: 37%;
+			text-align: left;
+	
+			span {
+				color: $aqua;
+				margin-left: -6px;
+				margin-right: -6px;
+				opacity: 1;
+				position: relative;
+				z-index: -1;
+			}
+		}
+		&.desc {
+			font-size: 12px; 
+			width: 61%;
+			text-align: right;
 		}
 	}
-	.desc {
-		font-size: 12px; 
-		width: 65%;
-		float: right;
-		text-align: right;
-	}
+
+	
 	
 }
 
@@ -77,19 +97,41 @@ p {
 	font-size: 13px;
 }
 
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+#content-wrapper > div > div {
+	margin-bottom: 30px;
+}
+
 #form-wrapper {
 	width: 100%;
-	padding-bottom: 50px;
 	
 	div {
 		float: left;
 		padding-right: 15px;
+		padding-bottom: 15px;
 
 		&.data-name {
 			width: 70%;
+
+			@media #{$phone} {
+				width: 100%;
+				padding-right: 0;
+			}
 		}
 		&.data-value {
 			width: 20%;
+
+			@media #{$phone} {
+				width: 65%;
+			}
 		}
 		label {
 			font-size: 13px;
@@ -98,16 +140,23 @@ p {
 			background: $gray;
 			width: 100%;
 			font-size: 18px;
-			padding: 10px 5px;
+			padding: 5px;
 			border: 0;
 			height: 35px;
+			border-bottom: 2px solid $gray;
+			border-left: 2px solid $gray;
 
 			&:focus {
 				outline: none;
 				border-bottom: 2px solid $aqua;
 				border-left: 2px solid $aqua;
 			}
+			&:required {
+    			box-shadow: none;
+			}
+			
 		}
+		
 	}
 
 	button {
@@ -115,6 +164,10 @@ p {
 		width: 10%;
 		height: 35px;
 		line-height: 35px;
+
+		@media #{$phone} {
+			width: 35%;
+		}
 	}
 	
 	&:after {
@@ -156,6 +209,10 @@ button {
 		.graph-data-name {
 			padding: 5px;
 			display: inline-block;
+
+			@media #{$tablet} {
+				font-size: 13px;
+			}
 		}
 		.graph-data-remove {
 			position: absolute;
@@ -169,6 +226,20 @@ button {
 		&.hover {
 			background: $gray;
 		}
+		@media #{$tablet} {
+			width: 49%;
+			display: inline-block;
+			vertical-align: top;
+			margin-right: 1%;
+		}
+		@media #{$phone} {
+			width: 100%;
+			display: block;
+			margin-right: 0;
+		}
+	}
+	@media #{$tablet} {
+		width: 100%;
 	}
 }
 
@@ -246,15 +317,29 @@ button {
 				// @include rotate(-90deg);
 				// @include rotate-point(center, center);
 				// margin-top: 15px;
-				
+				@media #{$phone} {
+					font-size: 11px;
+				}
+			}
+			&.hover:before {
+				content: '';
+				display: block;
+				position: absolute;
+				left: 0;
+				z-index: 5;
+				width: 100%;
+				border-top: 1px dashed #fff;
+				opacity: 0.3;
 			}	
 		}
+	}
+	@media #{$tablet} {
+		width: 100%;
 	}
 }
 
 footer {
 	border-top: 1px solid $gray;
-	margin-top: 40px;
 
 	p {
 		text-align: right;
